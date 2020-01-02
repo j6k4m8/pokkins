@@ -11,64 +11,14 @@ import time
 import os.path
 from email.utils import formatdate  # RFC 2822 date formatting
 
+from .templates import RSS_TEMPLATE, EPISODE_TEMPLATE
+from .ip import get_global_ip
+
 __version__ = "0.1.0"
 
 DEFAULT_OWNER_NAME = "Pokkins Podcast Service"
 DEFAULT_OWNER_EMAIL = "pokkins@matelsky.com"
 DEFAULT_DURATION = 153_762
-
-EPISODE_TEMPLATE = """
-<item>
-    <title>{title}</title>
-    <description>{description}</description>
-    <itunes:summary>{description}</itunes:summary>
-    <itunes:subtitle>{description}</itunes:subtitle>
-    <itunesu:category itunesu:code="112" />
-    <enclosure url="{filepath}" type="audio/mpeg" length="1" />
-    <guid>{filepath}</guid>
-    <itunes:duration>{duration}</itunes:duration>
-    <pubDate>{published_date}</pubDate>
-</item>
-"""
-
-RSS_TEMPLATE = """
-<?xml version="1.0" encoding="utf-8"?>
-<rss xmlns:atom="http://www.w3.org/2005/Atom"
-    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd"
-    xmlns:itunesu="http://www.itunesu.com/feed" version="2.0">
-    <channel>
-        <link>{root_url}</link>
-        <language>en-us</language>
-        <copyright>{current_year}</copyright>
-        <webMaster>{owner_email} ({owner_name})</webMaster>
-        <managingEditor>{owner_email} ({owner_name})</managingEditor>
-        <image>
-            <url>{image_url}</url>
-            <title>pokkins icon</title>
-            <link>{root_url}</link>
-        </image>
-        <itunes:owner>
-            <itunes:name>{owner_name}</itunes:name>
-            <itunes:email>{owner_email}</itunes:email>
-        </itunes:owner>
-        <itunes:category text="Education">
-            <itunes:category text="Higher Education" />
-        </itunes:category>
-        <itunes:keywords>pokkins, audio</itunes:keywords>
-        <itunes:explicit>no</itunes:explicit>
-        <itunes:image href="{image_url}" />
-        <atom:link href="{root_url}/feed.xml" rel="self" type="application/rss+xml" />
-        <pubDate>{created_date}</pubDate>
-        <title>{title}</title>
-        <itunes:author>{owner_name}</itunes:author>
-        <description>{description}</description>
-        <itunes:summary>{description}</itunes:summary>
-        <itunes:subtitle>{description}</itunes:subtitle>
-        <lastBuildDate>{build_date}</lastBuildDate>
-        {episodes}
-    </channel>
-</rss>
-"""
 
 
 def format_date(date: float = None) -> str:
@@ -95,6 +45,7 @@ class Pokkins:
         description: str = None,
         owner_name: str = None,
         owner_email: str = None,
+        host_address: str = None,
     ) -> None:
         """
         Create a new pokkins host for a podcast.
@@ -102,6 +53,13 @@ class Pokkins:
         The only required argument is `episode_filepath`. All other arguments
         may be omitted.
         """
+        if host_address is None:
+            self.host_address = get_global_ip() + ":8080"
+        elif host_address.startswith(":"):
+            self.host_address = get_global_ip() + host_address
+        else:
+            self.host_address = host_address
+
         self.episode_filepath = episode_filepath.rstrip("/") + "/"
         self.title = title if title else os.path.dirname(self.episode_filepath)
         self.description = (
