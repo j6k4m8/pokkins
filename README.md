@@ -1,4 +1,4 @@
-# pokkins
+# 🎧 pokkins
 
 Zero-config podcast hosting.
 
@@ -29,6 +29,8 @@ $ docker run -it --rm -v $(pwd):/mnt/vin/eps -p 8092:8092 pokkins
 
 
 ## native python approach:
+
+Note that you may first need to install dependencies with `poetry install`.
 
 ```shell
 $ python3 -c "from pokkins import Pokkins; print(Pokkins('eps').generate_rss())" > feed.xml
