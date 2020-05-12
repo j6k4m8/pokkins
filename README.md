@@ -36,11 +36,13 @@ Note that you may first need to install dependencies with `poetry install`.
 $ python3 -c "from pokkins import Pokkins; print(Pokkins('eps').generate_rss())" > feed.xml
 ```
 
-You must now serve the directory over HTTP. One simple way to do this:
+You can now serve the directory over HTTP. One simple way to do this:
 
 ```shell
 $ python3 -m http.server 8092
 ```
+
+This hosts the feed XML and the episodes; rather than running a python http server (which is jank!!), you can also upload the whole thing to an s3 bucket, for example.
 
 ## faq
 
