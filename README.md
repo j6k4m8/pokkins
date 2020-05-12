@@ -27,6 +27,8 @@ $ docker build --rm -t pokkins .
 $ docker run -it --rm -v $(pwd):/mnt/vin/eps -p 8092:8092 pokkins
 ```
 
+If you can guarantee that this host will remain static and publicly accessible, then you can submit `http://[host]:8092/feed.xml` as a podcast URL to most podcast apps. 
+
 
 ## native python approach:
 
