@@ -46,8 +46,8 @@ $ python3 -m http.server 8092
 
 #### i came here because i wanted to start a podcast! this looks hard!
 
-eh whatever, email me at opensource-at-matelsky-dot-com and I'll help you
+mehhh yeah it is, email me at opensource-at-matelsky-dot-com and I'll try to help you
 
 #### how do i add tags? how do I add episode descriptions?
 
-right now, you can't. but if you want those features, ①  consider using a more advanced podcast syndication service (this one is really just bare-bones to get something running with zero config, and has no bells or whistles ②  make a new Issue or Pull Request and I'll try to triage!
+right now, you can't. but if you want those features, ① consider using a more advanced podcast syndication service (this one is really just bare-bones to get something running with zero config, and has no bells or whistles ②  make a new Issue or Pull Request and I'll try to triage!
