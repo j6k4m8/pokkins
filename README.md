@@ -54,4 +54,4 @@ mehhh yeah it is, email me at opensource-at-matelsky-dot-com and I'll try to hel
 
 #### how do i add tags? how do I add episode descriptions?
 
-right now, you can't. but if you want those features, ① consider using a more advanced podcast syndication service (this one is really just bare-bones to get something running with zero config, and has no bells or whistles ②  make a new Issue or Pull Request and I'll try to triage!
+right now, you can't. but if you want those features, ① consider using a more advanced podcast syndication service (this one is really just bare-bones to get something running with zero config, and has no bells or whistles) ②  make a new Issue or Pull Request and I'll try to triage!
